@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHISHIED - Detect</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-shield-alt text-primary"></i> PHISHIED
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="detect.html">Detect</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-5 fw-bold">Scan for Threats</h1>
+            <p class="lead">_____________________________________.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mb-5" style="margin-top: -30px;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Detection Card -->
+                <div class="card detection-card border-0 shadow-lg">
+                    <div class="card-body p-4">
+                        <label for="urlInput" class="form-label fw-bold">Website URL</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="fas fa-link"></i></span>
+                            <input type="text" class="form-control form-control-lg" id="urlInput" placeholder="https://example.com" required>
+                            <button class="btn btn-primary btn-lg" type="button" id="checkUrlBtn">Check Status</button>
+                        </div>
+                        <small class="text-muted"><i class="fas fa-info-circle"></i> Detection uses live feature extraction and Random Forest inference.</small>
+
+                        <!-- Result Box -->
+                        <div id="resultBox" class="result-box mt-4" style="display: none;">
+                            <h4 id="resultTitle" class="fw-bold mb-3"></h4>
+                            <p id="resultMessage" class="lead mb-0"></p>
+                            
+                            <hr class="my-4">
+                            
+                            <h5 class="text-start mb-4 border-bottom pb-2">Extracted Feature Analysis</h5>
+                            
+                            <!-- URL Features -->
+                            <div class="mb-4">
+                                <h6 class="text-primary fw-bold mb-2"><i class="fas fa-link"></i> URL Features</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover table-bordered mb-0">
+                                        <thead class="table-light"><tr><th>Feature</th><th>Value</th></tr></thead>
+                                        <tbody id="urlFeaturesBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Security Indicators -->
+                            <div class="mb-4">
+                                <h6 class="text-danger fw-bold mb-2"><i class="fas fa-shield-alt"></i> Security Indicators</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover table-bordered mb-0">
+                                        <thead class="table-light"><tr><th>Feature</th><th>Value</th></tr></thead>
+                                        <tbody id="securityFeaturesBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Content / Behavior Indicators -->
+                            <div class="mb-4">
+                                <h6 class="text-warning text-dark fw-bold mb-2"><i class="fas fa-file-alt"></i> Content / Behavior Indicators</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover table-bordered mb-0">
+                                        <thead class="table-light"><tr><th>Feature</th><th>Value</th></tr></thead>
+                                        <tbody id="contentFeaturesBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- External Threat Intel -->
+                            <div class="mb-3" id="externalIntelSection" style="display: none;">
+                                <h6 class="text-secondary fw-bold mb-2"><i class="fas fa-globe"></i> External Threat Intelligence</h6>
+                                <div id="externalIntelResult" class="alert mb-0 p-2">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Domain Age Info -->
+                            <div class="mb-3" id="domainInfoSection" style="display: none;">
+                                <h6 class="text-info text-dark fw-bold mb-2"><i class="fas fa-calendar-alt"></i> Domain WHOIS Information</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-hover table-bordered mb-0">
+                                        <tbody id="domainInfoBody">
+                                            <!-- Populated by JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How it works -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">How Detection Works</h2>
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <i class="fas fa-globe fa-2x text-primary mb-3"></i>
+                        <h5>1. URL Parsing</h5>
+                        <p class="text-muted">Analyzing structure, length, and protocol.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <i class="fas fa-code fa-2x text-primary mb-3"></i>
+                        <h5>2. Feature Extraction</h5>
+                        <p class="text-muted">Identifying suspicious keywords and patterns.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <i class="fas fa-robot fa-2x text-primary mb-3"></i>
+                        <h5>3. Classification</h5>
+                        <p class="text-muted">Executing Machine Learning decision logic.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-4 mt-auto">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 PHISHIED Project. Designed for Real-World Cyber Defense.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/detect.js"></script>
+
+</body>
+</html>

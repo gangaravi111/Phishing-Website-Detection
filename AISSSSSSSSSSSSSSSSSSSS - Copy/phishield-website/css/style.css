@@ -1,0 +1,103 @@
+/* PHISHIED Custom Styles */
+
+:root {
+    --primary-color: #0d6efd; /* Bootstrap Blue */
+    --secondary-color: #6c757d;
+    --accent-color: #0dcaf0; /* Cyan for tech vibes */
+    --dark-bg: #1a1d20;
+    --card-bg: #212529;
+    --text-color: #e9ecef;
+}
+
+body {
+    background-color: #f8f9fa; /* Light mode default, sections can be dark */
+    color: #212529;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Dark Mode Sections */
+.bg-dark-custom {
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+}
+
+.navbar-custom {
+    background-color: var(--dark-bg) !important;
+    border-bottom: 1px solid #343a40;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text; /* Fallback */
+}
+
+/* Detection Page */
+.detection-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-top: -50px; /* Overlap hero */
+}
+
+.result-box {
+    display: none; /* Hidden by default */
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.result-safe {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.result-phishing {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+.feature-list {
+    text-align: left;
+    margin-top: 1rem;
+}
+
+/* Methodology & Tech Stack */
+.step-card {
+    border: none;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+}
+
+.tech-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-bg);
+    color: #adb5bd;
+    padding: 3rem 0;
+    margin-top: auto;
+}

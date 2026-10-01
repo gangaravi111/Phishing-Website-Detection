@@ -1,0 +1,8 @@
+flask
+pandas
+numpy
+scikit-learn
+fastparquet
+requests
+python-dotenv
+python-whois
